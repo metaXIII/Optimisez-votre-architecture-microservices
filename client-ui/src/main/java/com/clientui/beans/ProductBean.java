@@ -1,34 +1,13 @@
-package com.mproduits.model;
+package com.clientui.beans;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
-public class Product {
-
-    @Id
-    @GeneratedValue
+public class ProductBean {
     private int id;
-
     private String titre;
-
     private String description;
-
     private String image;
-
     private Double prix;
 
-
-    public Product() {
-    }
-
-    public Product(int id, String titre, String description, String image, Double prix) {
-        this.id = id;
-        this.titre = titre;
-        this.description = description;
-        this.image = image;
-        this.prix = prix;
+    public ProductBean() {
     }
 
     public int getId() {
@@ -73,7 +52,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "ProductBean{" +
                 "id=" + id +
                 ", titre='" + titre + '\'' +
                 ", description='" + description + '\'' +
@@ -81,6 +60,4 @@ public class Product {
                 ", prix=" + prix +
                 '}';
     }
-
-
 }

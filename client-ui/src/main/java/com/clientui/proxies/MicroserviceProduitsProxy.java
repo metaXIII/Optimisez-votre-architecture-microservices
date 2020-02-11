@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(value = "microservice-produits", url = "localhost:9001")
+@FeignClient(value = "microservice-produits", url = "localhost:9001", decode404 = true)
 public interface MicroserviceProduitsProxy {
     @GetMapping(value = "/Produits")
     List<ProductBean> listeDesProduits();

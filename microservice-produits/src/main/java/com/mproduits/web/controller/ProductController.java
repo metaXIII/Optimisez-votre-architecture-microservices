@@ -1,9 +1,11 @@
 package com.mproduits.web.controller;
 
+import com.mproduits.configuration.ApplicationPropertiesConfiguration;
 import com.mproduits.dao.ProductDao;
 import com.mproduits.model.Product;
 import com.mproduits.web.exceptions.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,13 +21,17 @@ public class ProductController {
     @Autowired
     ProductDao productDao;
 
+    @Autowired
+    ApplicationPropertiesConfiguration appProperties;
+
     // Affiche la liste de tous les produits disponibles
     @GetMapping(value = "/Produits")
     public List<Product> listeDesProduits() {
         List<Product> products = productDao.findAll();
         if (products.isEmpty())
             throw new ProductNotFoundException("Aucun produit n'est disponible à la vente");
-        return products;
+        List<Product> productList = products.subList(0, appProperties.getLimitDeProduits());
+        return productList;
     }
 
     //Récuperer un produit par son id

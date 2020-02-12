@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Optional;
 
-@FeignClient(name = "microservice-commandes", url = "localhost:9002")
+@FeignClient(name = "zuul-server")
 public interface MicroserviceCommandeProxy {
 
     @GetMapping(value = "/commandes/{id}")
